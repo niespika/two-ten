@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  @apply bg-brand-bg text-brand-text font-sans;
+}
+
+.dark html,
+.dark body {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.app-shell {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+.card {
+  @apply rounded-2xl border border-black/10 bg-white/75 p-4 shadow-soft dark:border-white/10 dark:bg-brand-darkCard;
+}
+
+.btn {
+  @apply inline-flex min-h-12 w-full items-center justify-center rounded-xl px-4 py-3 text-base font-medium transition;
+}
+
+.btn-primary {
+  @apply btn bg-brand-green text-white hover:bg-brand-green/90 dark:bg-brand-darkGreen;
+}
+
+.btn-secondary {
+  @apply btn border border-brand-copper/60 text-brand-text dark:border-brand-darkCopper/70 dark:text-brand-darkText;
+}
+
+.input {
+  @apply min-h-12 w-full rounded-xl border border-black/15 bg-white px-3 py-2 dark:border-white/20 dark:bg-black/20;
+}
