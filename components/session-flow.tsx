@@ -68,7 +68,10 @@ export function SessionFlow({ sessionId, exercises }: { sessionId: string; exerc
         </select>
 
         <label className="text-sm">Proposed weight (lb)</label>
-        <input className="input" type="number" step="0.5" value={weightLb} onChange={(event) => setWeightLb(Number(event.target.value))} />
+        <input className="input" type="number" step="5" value={weightLb} onChange={(event) => {
+            const next = Number(event.target.value);
+            setWeightLb(Number.isFinite(next) ? next : 0);
+          }} />
 
         <div className="flex items-center justify-between gap-2">
           <p className="text-sm">Last duration: <strong>{fmtDuration(current?.lastDuration ?? null)}</strong></p>
@@ -82,7 +85,9 @@ export function SessionFlow({ sessionId, exercises }: { sessionId: string; exerc
           className="btn-primary"
           onClick={() => {
             if (!exerciseId) return;
-            setActive({ sessionId, exerciseId, weightLb, startedAtMs: Date.now() });
+            const normalizedWeight = Math.max(0, Math.round(weightLb / 5) * 5);
+            setWeightLb(normalizedWeight);
+            setActive({ sessionId, exerciseId, weightLb: normalizedWeight, startedAtMs: Date.now() });
           }}
         >
           Start Set
