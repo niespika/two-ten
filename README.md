@@ -1,5 +1,25 @@
 # two-ten
 
+<<<<<<< codex/fix-mobile-ux-bugs-and-ensure-state-persistence
+A lightweight gym web app for quickly logging timed sets.
+
+## Run locally
+
+```bash
+python -m http.server 4173
+```
+
+Then open <http://localhost:4173>.
+
+## Key flow covered
+
+- Login
+- New session creation
+- Start set with countdown
+- Manual stop / automatic completion
+- Log is saved and dashboard summary updates
+- App state persists in `localStorage` across reloads
+=======
 Minimalist strength training tracker inspired by HIT / Doug McGuff principles.
 
 ## Stack
@@ -58,3 +78,4 @@ Open http://localhost:3000.
 - Recommendation logic:
   - Last duration > 120s => Increase weight (+increment, default 5 lb)
   - Otherwise => Keep weight
+>>>>>>> main
