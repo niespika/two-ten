@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two-Ten Gym Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app" aria-live="polite">
+      <section id="login-view" class="card view">
+        <h1>Two-Ten</h1>
+        <p class="subtitle">Quickly track your workout sets.</p>
+        <form id="login-form" class="stack">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" required maxlength="40" autocomplete="name" />
+          <button type="submit" class="primary">Log in</button>
+        </form>
+      </section>
+
+      <section id="dashboard-view" class="view hidden">
+        <header class="topbar card">
+          <div>
+            <h2 id="greeting"></h2>
+            <p id="summary" class="subtitle"></p>
+          </div>
+          <button id="logout-btn" class="ghost" type="button">Log out</button>
+        </header>
+
+        <section class="card stack">
+          <h3>New session</h3>
+          <label for="exercise">Exercise</label>
+          <input id="exercise" type="text" placeholder="e.g. Squat" maxlength="60" />
+          <label for="duration">Countdown (seconds)</label>
+          <input id="duration" type="number" min="5" max="300" value="30" />
+          <button id="new-session-btn" class="primary" type="button">Start new session</button>
+        </section>
+
+        <section id="active-session" class="card hidden stack" aria-live="polite">
+          <h3 id="session-title"></h3>
+          <p id="session-status" class="subtitle">Ready to start your set.</p>
+          <div class="countdown-wrap">
+            <span id="countdown">30</span>
+            <small>seconds</small>
+          </div>
+          <div class="actions">
+            <button id="start-set-btn" class="primary" type="button">Start set</button>
+            <button id="stop-btn" class="danger" type="button" disabled>Stop</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>Session log</h3>
+          <ul id="log-list" class="log-list"></ul>
+          <p id="empty-log" class="subtitle">No sets logged yet.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
