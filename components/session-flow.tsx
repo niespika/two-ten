@@ -3,6 +3,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ChronoScreen } from '@/components/chrono-screen';
 import { RecommendationBadge, recommendation } from '@/components/recommendation-badge';
+import { OrnateButton } from '@/components/ui/OrnateButton';
+import { OrnateFrame } from '@/components/ui/OrnateFrame';
+import { SimpleFrame } from '@/components/ui/SimpleFrame';
 
 type ExerciseMeta = {
   id: string;
@@ -59,7 +62,7 @@ export function SessionFlow({ sessionId, exercises }: { sessionId: string; exerc
           }}
         />
       )}
-      <section className="card space-y-3">
+      <OrnateFrame className="space-y-3">
         <label className="text-sm">Exercise</label>
         <select className="input" value={exerciseId} onChange={(event) => handleChangeExercise(event.target.value)}>
           {exercises.map((exercise) => (
@@ -80,9 +83,9 @@ export function SessionFlow({ sessionId, exercises }: { sessionId: string; exerc
 
         {rec.nextWeight && <p className="text-sm">Recommended weight: <strong>{rec.nextWeight} lb</strong></p>}
 
-        <button
+        <OrnateButton
           type="button"
-          className="btn-primary"
+          className="mt-2"
           onClick={() => {
             if (!exerciseId) return;
             const normalizedWeight = Math.max(0, Math.round(weightLb / 5) * 5);
@@ -91,23 +94,26 @@ export function SessionFlow({ sessionId, exercises }: { sessionId: string; exerc
           }}
         >
           Start Set
-        </button>
-      </section>
+        </OrnateButton>
+      </OrnateFrame>
 
-      <button
-        type="button"
-        className="btn-secondary"
-        onClick={async () => {
-          await fetch('/api/sessions/end', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ sessionId }),
-          });
-          window.location.href = '/dashboard';
-        }}
-      >
-        End Session
-      </button>
+      <SimpleFrame>
+        {/* Keep non-primary actions intentionally minimalist to preserve clear CTA hierarchy. */}
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={async () => {
+            await fetch('/api/sessions/end', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ sessionId }),
+            });
+            window.location.href = '/dashboard';
+          }}
+        >
+          End Session
+        </button>
+      </SimpleFrame>
     </div>
   );
 }
