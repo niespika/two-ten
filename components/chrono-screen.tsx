@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { OrnateFrame } from '@/components/ui/OrnateFrame';
 
 type ChronoState = {
   sessionId: string;
@@ -84,11 +85,11 @@ export function ChronoScreen({ state, onDone }: { state: ChronoState; onDone: ()
 
   return (
     <div className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-brand-bg px-4 dark:bg-brand-darkBg">
-      <div className="text-center">
+      <OrnateFrame className="w-full max-w-[420px] text-center">
         <p className="mb-6 text-sm uppercase tracking-[0.3em] opacity-70">{countdownLeft > 0 ? 'Get Ready' : 'Effort'}</p>
         <div className="font-serif text-8xl transition-all duration-500 ease-out">{text}</div>
-      </div>
-      <button onClick={() => stop(true)} className="btn-primary mt-12 max-w-[280px] text-xl">Stop</button>
+        <button onClick={() => stop(true)} className="btn-primary mt-12 max-w-[280px] text-xl">Stop</button>
+      </OrnateFrame>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import { toast } from '@/lib/toast';
+import { SimpleFrame } from '@/components/ui/SimpleFrame';
 import {
   createExerciseAction,
   deleteExerciseAction,
@@ -43,13 +44,13 @@ function AddExerciseForm() {
   useToastFromState(state);
 
   return (
-    <section className="card space-y-3">
+    <SimpleFrame className="space-y-3">
       <h2 className="font-serif text-xl">Add Exercise</h2>
       <form action={formAction} className="space-y-2">
         <input name="name" className="input" placeholder="Exercise name" required />
         <SubmitButton className="btn-primary">Add</SubmitButton>
       </form>
-    </section>
+    </SimpleFrame>
   );
 }
 
@@ -61,7 +62,7 @@ function ExerciseItem({ exercise }: { exercise: Exercise }) {
   useToastFromState(deleteState);
 
   return (
-    <article className="card space-y-2">
+    <SimpleFrame className="space-y-2">
       <form action={updateAction} className="space-y-2">
         <input type="hidden" name="id" value={exercise.id} />
         <input name="name" className="input" defaultValue={exercise.name} required />
@@ -79,7 +80,7 @@ function ExerciseItem({ exercise }: { exercise: Exercise }) {
         <input type="hidden" name="id" value={exercise.id} />
         <SubmitButton className="btn text-red-700 dark:text-red-400">Delete</SubmitButton>
       </form>
-    </article>
+    </SimpleFrame>
   );
 }
 

@@ -4,6 +4,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { RecommendationBadge, recommendation } from '@/components/recommendation-badge';
 import { prisma } from '@/lib/prisma';
 import { requireUser } from '@/lib/session';
+import { SimpleFrame } from '@/components/ui/SimpleFrame';
 
 function fmtDuration(seconds: number | null) {
   if (seconds == null) return '--:--';
@@ -48,7 +49,7 @@ export default async function DashboardPage() {
           const rec = recommendation(last?.durationSeconds ?? null, last?.weightLb ?? null, exercise.incrementLb);
 
           return (
-            <article key={exercise.id} className="card space-y-2">
+            <SimpleFrame key={exercise.id} className="space-y-2">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-lg font-medium">{exercise.name}</h3>
                 <RecommendationBadge label={rec.label} tone={rec.tone} />
@@ -59,7 +60,7 @@ export default async function DashboardPage() {
               <Link href={`/exercises/${exercise.id}`} className="text-sm underline underline-offset-4">
                 View chart
               </Link>
-            </article>
+            </SimpleFrame>
           );
         })}
       </section>
