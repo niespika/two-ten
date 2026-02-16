@@ -1,20 +1,20 @@
 import type { ReactNode } from 'react';
 import { CornerFlourish, TopMotif } from '@/components/ui/ornaments';
 
-export function OrnateFrame({ children, className = '' }: { children: ReactNode; className?: string }) {
+export function OrnateFrame({ children, className = '', minimal = false }: { children: ReactNode; className?: string; minimal?: boolean }) {
   return (
     <section
-      className={`paper-grain relative overflow-hidden rounded-[1.75rem] border border-[#C3A65C]/55 bg-white/80 p-5 shadow-soft dark:border-brand-darkCopper/70 dark:bg-brand-darkCard/95 ${className}`}
+      className={`paper-grain relative overflow-hidden rounded-[1.75rem] border border-[#A99264]/45 bg-white/82 p-7 shadow-soft dark:border-brand-darkCopper/70 dark:bg-brand-darkCard/95 ${className}`}
     >
-      <div className="pointer-events-none absolute inset-[8px] rounded-[1.35rem] border border-[#C3A65C]/40" />
-      <TopMotif className="pointer-events-none absolute left-1/2 top-2 h-6 w-[11rem] -translate-x-1/2 text-[#C3A65C]/85" />
+      <div className="pointer-events-none absolute inset-[9px] rounded-[1.3rem] border border-[#A99264]/28" />
+      {!minimal && <TopMotif className="pointer-events-none absolute left-1/2 top-2 h-5 w-[10rem] -translate-x-1/2 text-[#A99264]/70" />}
 
-      <CornerFlourish className="pointer-events-none absolute left-1 top-1 h-14 w-14 text-[#C3A65C]/80" />
-      <CornerFlourish className="pointer-events-none absolute right-1 top-1 h-14 w-14 scale-x-[-1] text-[#C3A65C]/80" />
-      <CornerFlourish className="pointer-events-none absolute bottom-1 left-1 h-14 w-14 scale-y-[-1] text-[#C3A65C]/80" />
-      <CornerFlourish className="pointer-events-none absolute bottom-1 right-1 h-14 w-14 scale-[-1] text-[#C3A65C]/80" />
+      <CornerFlourish className={`pointer-events-none absolute left-[5px] top-[5px] text-[#A99264]/65 ${minimal ? 'h-9 w-9' : 'h-11 w-11'}`} />
+      <CornerFlourish className={`pointer-events-none absolute right-[5px] top-[5px] scale-x-[-1] text-[#A99264]/65 ${minimal ? 'h-9 w-9' : 'h-11 w-11'}`} />
+      <CornerFlourish className={`pointer-events-none absolute bottom-[5px] left-[5px] scale-y-[-1] text-[#A99264]/65 ${minimal ? 'h-9 w-9' : 'h-11 w-11'}`} />
+      <CornerFlourish className={`pointer-events-none absolute bottom-[5px] right-[5px] scale-[-1] text-[#A99264]/65 ${minimal ? 'h-9 w-9' : 'h-11 w-11'}`} />
 
-      <div className="relative z-10 mt-5">{children}</div>
+      <div className={`relative z-10 ${minimal ? "mt-2" : "mt-4"}`}>{children}</div>
     </section>
   );
 }

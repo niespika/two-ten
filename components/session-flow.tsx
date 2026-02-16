@@ -63,25 +63,25 @@ export function SessionFlow({ sessionId, exercises }: { sessionId: string; exerc
         />
       )}
       <OrnateFrame className="space-y-3">
-        <label className="text-sm">Exercise</label>
+        <label className="text-sm uppercase tracking-[0.14em] text-brand-text/75">Exercise</label>
         <select className="input" value={exerciseId} onChange={(event) => handleChangeExercise(event.target.value)}>
           {exercises.map((exercise) => (
             <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
           ))}
         </select>
 
-        <label className="text-sm">Proposed weight (lb)</label>
+        <label className="text-sm uppercase tracking-[0.14em] text-brand-text/75">Proposed weight (lb)</label>
         <input className="input" type="number" step="5" value={weightLb} onChange={(event) => {
             const next = Number(event.target.value);
             setWeightLb(Number.isFinite(next) ? next : 0);
           }} />
 
         <div className="flex items-center justify-between gap-2">
-          <p className="text-sm">Last duration: <strong>{fmtDuration(current?.lastDuration ?? null)}</strong></p>
+          <p className="text-sm text-brand-text/85">Last duration: <strong className="font-semibold">{fmtDuration(current?.lastDuration ?? null)}</strong></p>
           <RecommendationBadge label={rec.label} tone={rec.tone} />
         </div>
 
-        {rec.nextWeight && <p className="text-sm">Recommended weight: <strong>{rec.nextWeight} lb</strong></p>}
+        {rec.nextWeight && <p className="text-sm text-brand-text/85">Recommended weight: <strong className="font-semibold">{rec.nextWeight} lb</strong></p>}
 
         <OrnateButton
           type="button"
